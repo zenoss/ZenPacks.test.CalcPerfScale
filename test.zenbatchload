@@ -1,0 +1,2 @@
+/Test/CalcPerf
+cptest1 setManageIp='127.0.5.1', zTestCalcPerfTopComponentsPerDevice=2, zTestCalcPerfBottomComponentsPerTopComponent=2

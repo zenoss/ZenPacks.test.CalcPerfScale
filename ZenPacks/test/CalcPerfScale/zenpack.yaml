@@ -1,0 +1,124 @@
+name: ZenPacks.test.CalcPerfScale
+
+zProperties:
+  zTestCalcPerfTopComponentsPerDevice:
+    type: int
+    default: 2
+
+  zTestCalcPerfBottomComponentsPerTopComponent:
+    type: int
+    default: 2
+
+classes:
+  TestDevice:
+    base: [zenpacklib.Device]
+
+  TestTopComponent:
+    base: [zenpacklib.Component]
+    monitoring_templates:
+      - TopComponentAggPool
+
+  TestBottomComponent:
+    base: [zenpacklib.Component]
+    monitoring_templates:
+      - Component
+      - ComponentCalcPerf
+
+class_relationships:
+  - TestDevice 1:MC TestTopComponent
+  - TestTopComponent 1:MC TestBottomComponent
+
+device_classes:
+  /Test: {}
+
+  /Test/CalcPerf:
+    zProperties:
+      zPythonClass: ZenPacks.test.CalcPerfScale.TestDevice
+
+      zDeviceTemplates:
+        - DeviceAgg
+
+      zCollectorPlugins:
+        - TestCalcPerf
+
+    templates:
+      DeviceAgg:
+        datasources:
+          aggsum2:
+            type: Datapoint Aggregator
+            targetMethod: testTopComponents
+            targetDataSource: aggsum2
+            targetDataPoint: aggsum2
+            cycletime: 10
+
+            datapoints:
+              aggsum2:
+                operation: sum
+
+          aggsum4:
+            type: Datapoint Aggregator
+            targetMethod: testTopComponents
+            targetDataSource: aggsum4
+            targetDataPoint: aggsum4
+            cycletime: 10
+
+            datapoints:
+              aggsum4:
+                operation: sum
+
+      Component:
+        datasources:
+          command1:
+            type: COMMAND
+            parser: Nagios
+            commandTemplate: "/bin/echo 'OK|value1=1 value2=2 value3=3 value4=4'"
+            cycletime: 10
+
+            datapoints:
+              value1: {}
+              value2: {}
+              value3: {}
+              value4: {}
+
+      ComponentCalcPerf:
+        datasources:
+          sum2:
+            type: Calculated Performance
+            expression: "command1_value1 + command1_value2"
+            cycletime: 10
+
+            datapoints:
+              sum2: {}
+
+          sum4:
+            type: Calculated Performance
+            expression: "command1_value1 + command1_value2 + command1_value3 + command1_value4"
+            cycletime: 10
+
+            datapoints:
+              sum4: {}
+
+      TopComponentAggPool:
+        datasources:
+          aggsum2:
+            type: Datapoint Aggregator
+            targetMethod: testBottomComponents
+            targetDataSource: sum2
+            targetDataPoint: sum2
+            cycletime: 10
+
+            datapoints:
+              aggsum2:
+                operation: sum
+
+          aggsum4:
+            type: Datapoint Aggregator
+            targetMethod: testBottomComponents
+            targetDataSource: sum4
+            targetDataPoint: sum4
+            cycletime: 10
+
+            datapoints:
+              aggsum4:
+                operation: sum
+
