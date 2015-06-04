@@ -66,6 +66,17 @@ device_classes:
               aggsum4:
                 operation: sum
 
+        graphs:
+          AggSums:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              AggSum2:
+                dpName: aggsum2_aggsum2
+              AggSum4:
+                dpName: aggsum4_aggsum4
+
       Component:
         datasources:
           command1:
@@ -114,6 +125,17 @@ device_classes:
             datapoints:
               sum4: {}
 
+        graphs:
+          CalcPerfSums:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              CalcPerfSum2:
+                dpName: sum2_sum2
+              CalcPerfSum4:
+                dpName: sum4_sum4
+
       TopComponentAggPool:
         datasources:
           aggsum2:
@@ -137,4 +159,15 @@ device_classes:
             datapoints:
               aggsum4:
                 operation: sum
+
+        graphs:
+          AggSums:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              AggSum2:
+                dpName: aggsum2_aggsum2
+              AggSum4:
+                dpName: aggsum4_aggsum4
 
