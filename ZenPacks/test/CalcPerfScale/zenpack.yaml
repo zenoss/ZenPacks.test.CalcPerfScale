@@ -83,7 +83,7 @@ device_classes:
             type: COMMAND
             parser: Nagios
             #commandTemplate: /bin/echo 'OK|value1=1 value2=2 value3=3 value4=4'
-            commandTemplate: /usr/bin/awk -F. '{printf"OK|";for(i=0;i<4;i++)printf"value"i+1"="(1000*i)+$$1" ";print"";exit 0}' /proc/uptime
+            commandTemplate: /usr/bin/awk -F. '{printf"OK|";for(i=0;i<4;i++)printf"value"i+1"="(1.0+0.1*i)*$$1" ";print"";exit 0}' /proc/uptime
             cycletime: 10
 
             datapoints:
