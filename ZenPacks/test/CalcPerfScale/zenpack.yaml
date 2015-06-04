@@ -66,12 +66,24 @@ device_classes:
               aggsum4:
                 operation: sum
 
+        graphs:
+          AggSums:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              AggSum2:
+                dpName: aggsum2_aggsum2
+              AggSum4:
+                dpName: aggsum4_aggsum4
+
       Component:
         datasources:
           command1:
             type: COMMAND
             parser: Nagios
-            commandTemplate: "/bin/echo 'OK|value1=1 value2=2 value3=3 value4=4'"
+            #commandTemplate: /bin/echo 'OK|value1=1 value2=2 value3=3 value4=4'
+            commandTemplate: /usr/bin/awk -F. '{printf"OK|";for(i=0;i<4;i++)printf"value"i+1"="(1000*i)+$$1" ";print"";exit 0}' /proc/uptime
             cycletime: 10
 
             datapoints:
@@ -79,6 +91,21 @@ device_classes:
               value2: {}
               value3: {}
               value4: {}
+
+        graphs:
+          Uptime:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              Uptime0:
+                dpName: command1_value1
+              Uptime1:
+                dpName: command1_value2
+              Uptime2:
+                dpName: command1_value3
+              Uptime3:
+                dpName: command1_value4
 
       ComponentCalcPerf:
         datasources:
@@ -97,6 +124,17 @@ device_classes:
 
             datapoints:
               sum4: {}
+
+        graphs:
+          CalcPerfSums:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              CalcPerfSum2:
+                dpName: sum2_sum2
+              CalcPerfSum4:
+                dpName: sum4_sum4
 
       TopComponentAggPool:
         datasources:
@@ -121,4 +159,15 @@ device_classes:
             datapoints:
               aggsum4:
                 operation: sum
+
+        graphs:
+          AggSums:
+            units: seconds
+            miny: 0
+
+            graphpoints:
+              AggSum2:
+                dpName: aggsum2_aggsum2
+              AggSum4:
+                dpName: aggsum4_aggsum4
 

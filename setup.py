@@ -8,7 +8,7 @@ AUTHOR = "Your Name Here"
 LICENSE = ""
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.test']
 PACKAGES = ['ZenPacks', 'ZenPacks.test', 'ZenPacks.test.CalcPerfScale']
-INSTALL_REQUIRES = []
+INSTALL_REQUIRES = ['ZenPacks.zenoss.CalculatedPerformance']
 COMPAT_ZENOSS_VERS = ""
 PREV_ZENPACK_NAME = ""
 # STOP_REPLACEMENTS
