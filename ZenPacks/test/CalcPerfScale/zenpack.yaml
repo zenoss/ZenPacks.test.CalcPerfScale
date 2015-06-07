@@ -44,17 +44,6 @@ device_classes:
     templates:
       DeviceAgg:
         datasources:
-          aggsum2:
-            type: Datapoint Aggregator
-            targetMethod: testTopComponents
-            targetDataSource: aggsum2
-            targetDataPoint: aggsum2
-            cycletime: 10
-
-            datapoints:
-              aggsum2:
-                operation: sum
-
           aggsum4:
             type: Datapoint Aggregator
             targetMethod: testTopComponents
@@ -72,8 +61,6 @@ device_classes:
             miny: 0
 
             graphpoints:
-              AggSum2:
-                dpName: aggsum2_aggsum2
               AggSum4:
                 dpName: aggsum4_aggsum4
 
@@ -138,17 +125,6 @@ device_classes:
 
       TopComponentAggPool:
         datasources:
-          aggsum2:
-            type: Datapoint Aggregator
-            targetMethod: testBottomComponents
-            targetDataSource: sum2
-            targetDataPoint: sum2
-            cycletime: 10
-
-            datapoints:
-              aggsum2:
-                operation: sum
-
           aggsum4:
             type: Datapoint Aggregator
             targetMethod: testBottomComponents
@@ -160,14 +136,64 @@ device_classes:
               aggsum4:
                 operation: sum
 
+          aggsum1s:
+            type: Datapoint Aggregator
+            targetMethod: testBottomComponents
+            targetDataSource: command1
+            targetDataPoint: value1
+            cycletime: 10
+
+            datapoints:
+              aggsum1s:
+                operation: sum
+
+          aggsum2s:
+            type: Datapoint Aggregator
+            targetMethod: testBottomComponents
+            targetDataSource: command1
+            targetDataPoint: value2
+            cycletime: 10
+
+            datapoints:
+              aggsum2s:
+                operation: sum
+
+          aggsum3s:
+            type: Datapoint Aggregator
+            targetMethod: testBottomComponents
+            targetDataSource: command1
+            targetDataPoint: value3
+            cycletime: 10
+
+            datapoints:
+              aggsum3s:
+                operation: sum
+
+          aggsum4s:
+            type: Datapoint Aggregator
+            targetMethod: testBottomComponents
+            targetDataSource: command1
+            targetDataPoint: value4
+            cycletime: 10
+
+            datapoints:
+              aggsum4s:
+                operation: sum
+
         graphs:
           AggSums:
             units: seconds
             miny: 0
 
             graphpoints:
-              AggSum2:
-                dpName: aggsum2_aggsum2
               AggSum4:
                 dpName: aggsum4_aggsum4
+              AggSum1s:
+                dpName: aggsum1s_aggsum1s
+              AggSum2s:
+                dpName: aggsum2s_aggsum2s
+              AggSum3s:
+                dpName: aggsum3s_aggsum3s
+              AggSum4s:
+                dpName: aggsum4s_aggsum4s
 
