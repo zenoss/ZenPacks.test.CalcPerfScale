@@ -96,14 +96,6 @@ device_classes:
 
       ComponentCalcPerf:
         datasources:
-          sum2:
-            type: Calculated Performance
-            expression: "command1_value1 + command1_value2"
-            cycletime: 10
-
-            datapoints:
-              sum2: {}
-
           sum4:
             type: Calculated Performance
             expression: "command1_value1 + command1_value2 + command1_value3 + command1_value4"
@@ -118,8 +110,6 @@ device_classes:
             miny: 0
 
             graphpoints:
-              CalcPerfSum2:
-                dpName: sum2_sum2
               CalcPerfSum4:
                 dpName: sum4_sum4
 
