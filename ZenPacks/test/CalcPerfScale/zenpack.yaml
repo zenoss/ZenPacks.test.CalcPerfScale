@@ -49,7 +49,7 @@ device_classes:
             targetMethod: testTopComponents
             targetDataSource: aggsum4
             targetDataPoint: aggsum4
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               aggsum4:
@@ -71,7 +71,7 @@ device_classes:
             parser: Nagios
             #commandTemplate: /bin/echo 'OK|value1=1 value2=2 value3=3 value4=4'
             commandTemplate: /usr/bin/awk -F. '{printf"OK|";for(i=0;i<4;i++)printf"value"i+1"="(1.0+0.1*i)*$$1" ";print"";exit 0}' /proc/uptime
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               value1: {}
@@ -99,7 +99,7 @@ device_classes:
           sum4:
             type: Calculated Performance
             expression: "command1_value1 + command1_value2 + command1_value3 + command1_value4"
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               sum4: {}
@@ -120,7 +120,7 @@ device_classes:
             targetMethod: testBottomComponents
             targetDataSource: sum4
             targetDataPoint: sum4
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               aggsum4:
@@ -131,7 +131,7 @@ device_classes:
             targetMethod: testBottomComponents
             targetDataSource: command1
             targetDataPoint: value1
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               aggsum1s:
@@ -142,7 +142,7 @@ device_classes:
             targetMethod: testBottomComponents
             targetDataSource: command1
             targetDataPoint: value2
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               aggsum2s:
@@ -153,7 +153,7 @@ device_classes:
             targetMethod: testBottomComponents
             targetDataSource: command1
             targetDataPoint: value3
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               aggsum3s:
@@ -164,7 +164,7 @@ device_classes:
             targetMethod: testBottomComponents
             targetDataSource: command1
             targetDataPoint: value4
-            cycletime: 10
+            cycletime: 180
 
             datapoints:
               aggsum4s:
