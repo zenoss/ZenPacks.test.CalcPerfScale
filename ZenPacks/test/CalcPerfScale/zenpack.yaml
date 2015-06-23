@@ -50,6 +50,7 @@ device_classes:
             targetDataSource: aggsum4
             targetDataPoint: aggsum4
             cycletime: 180
+            debug: False
 
             datapoints:
               aggsum4:
@@ -70,7 +71,7 @@ device_classes:
             type: COMMAND
             parser: Nagios
             #commandTemplate: /bin/echo 'OK|value1=1 value2=2 value3=3 value4=4'
-            commandTemplate: /usr/bin/awk -F. '{printf"OK|";for(i=0;i<4;i++)printf"value"i+1"="(1.0+0.1*i)*$$1" ";print"";exit 0}' /proc/uptime
+            commandTemplate: /usr/bin/awk -F. '{printf"OK|";for(i=0;i<4;i++)printf"value"i+1"="(i+1)*$$1" ";print"";exit 0}' /proc/uptime
             cycletime: 180
 
             datapoints:
@@ -121,6 +122,7 @@ device_classes:
             targetDataSource: sum4
             targetDataPoint: sum4
             cycletime: 180
+            debug: False
 
             datapoints:
               aggsum4:
@@ -132,6 +134,7 @@ device_classes:
             targetDataSource: command1
             targetDataPoint: value1
             cycletime: 180
+            debug: False
 
             datapoints:
               aggsum1s:
@@ -143,6 +146,7 @@ device_classes:
             targetDataSource: command1
             targetDataPoint: value2
             cycletime: 180
+            debug: False
 
             datapoints:
               aggsum2s:
@@ -154,6 +158,7 @@ device_classes:
             targetDataSource: command1
             targetDataPoint: value3
             cycletime: 180
+            debug: False
 
             datapoints:
               aggsum3s:
@@ -165,6 +170,7 @@ device_classes:
             targetDataSource: command1
             targetDataPoint: value4
             cycletime: 180
+            debug: False
 
             datapoints:
               aggsum4s:
