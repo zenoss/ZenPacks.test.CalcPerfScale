@@ -26,14 +26,16 @@ EOF
 
     for svc in zenjmx zenmailtx zenperfsnmp zenprocess zenpropertymonitor zensyslog zentrap zenucsevents zenvsphere zenwebtx; do
         echo "disabling and stopping service: $svc"
-        EDITOR=$DISABLE_SERVICE_SH serviced service edit $svc; serviced service stop $svc;
+        EDITOR=$DISABLE_SERVICE_SH serviced service edit localhost/$svc; serviced service stop localhost/$svc;
     done
+serviced service stop localhost/zencommand
+serviced service stop localhost/zenpython
 }
 
 function generate_collectors
 {
     echo "creating collectors..."
-    serviced service attach zenhub su - zenoss -c 'for i in {11..25}; do dc-admin add-collector col$i; done'
+    serviced service attach localhost/zenhub/0 su - zenoss -c 'for i in {11..25}; do dc-admin add-collector col$i; done'
 }
 
 function generate_zenbatchload
