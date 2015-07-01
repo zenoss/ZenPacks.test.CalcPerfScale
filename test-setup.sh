@@ -30,12 +30,17 @@ EOF
     done
 serviced service stop localhost/zencommand
 serviced service stop localhost/zenpython
+serviced service stop localhost/zenping
 }
 
 function generate_collectors
 {
     echo "creating collectors..."
     serviced service attach localhost/zenhub/0 su - zenoss -c 'for i in {11..25}; do dc-admin add-collector col$i; done'
+    for i in {11..25}; do
+        serviced service remove col$i/zensyslog
+        serviced service remove col$i/zentrap
+    done
 }
 
 function generate_zenbatchload
